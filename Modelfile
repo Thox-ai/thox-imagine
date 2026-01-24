@@ -2,7 +2,7 @@
 # Based on x/flux2-klein
 # Created: 2026-01-24
 
-FROM x/flux2-klein:latest
+FROM x/flux2-klein
 
 # Model parameters
 PARAMETER temperature 0.8
