@@ -23,27 +23,35 @@ if ! ollama list | grep -q "x/flux2-klein"; then
     ollama pull x/flux2-klein
 fi
 
-echo "✅ Base model ready"
+echo "✅ FLUX2-Klein model ready"
 
-# Create Thox Imagine
-echo "🎨 Creating Thox Imagine model..."
-ollama create Thox-ai/thox-imagine -f Modelfile
+# Make tools executable
+echo "🔧 Setting up tools..."
+chmod +x thox-imagine-cli.sh 2>/dev/null || true
+chmod +x thox_imagine_api.py 2>/dev/null || true
+chmod +x thox-imagine-demo.sh 2>/dev/null || true
+chmod +x thox-imagine-generate 2>/dev/null || true
 
+echo "✅ Tools configured"
 echo ""
 echo "╔════════════════════════════════════════════════════════╗"
 echo "║         INSTALLATION COMPLETE!                         ║"
 echo "╚════════════════════════════════════════════════════════╝"
 echo ""
 echo "🚀 Quick Start:"
-echo "   ollama run Thox-ai/thox-imagine 'A beautiful sunset'"
+echo "   ollama run x/flux2-klein 'A beautiful sunset'"
+echo "   ./thox-imagine-generate 'A beautiful sunset'"
 echo ""
 echo "📚 Documentation:"
 echo "   README.md - Full documentation"
 echo "   QUICKSTART.md - Quick start guide"
 echo ""
-echo "🛠️  Tools:"
-echo "   ./thox-imagine-cli.sh - CLI interface"
+echo "🛠️  Tools Available:"
+echo "   ./thox-imagine-generate - Branded generation wrapper"
+echo "   ./thox-imagine-cli.sh - Interactive CLI"
 echo "   ./thox_imagine_api.py - Python API"
 echo "   ./thox-imagine-demo.sh - Interactive demo"
+echo ""
+echo "💡 Tip: Use thox-imagine-generate for automatic watermarking!"
 echo ""
 echo "© 2026 Thox.ai LLC. All Rights Reserved."

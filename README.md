@@ -1,311 +1,314 @@
-# Thox Imagine - AI Image Generation Model
+# Thox Imagine - AI Image Generation Toolkit
 
-**Created**: 2026-01-24
 **Version**: 1.0.0
-**Base Model**: x/flux2-klein
-**Size**: 5.7 GB
+**Created**: 2026-01-24
+**Powered By**: FLUX2-Klein (8B parameters)
 **Organization**: Thox.ai LLC
+
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE.md)
+[![FLUX](https://img.shields.io/badge/FLUX-2--Klein-green)](https://blackforestlabs.ai)
+[![Ollama](https://img.shields.io/badge/Ollama-Compatible-brightgreen)](https://ollama.ai)
+
+---
 
 ## Overview
 
-Thox Imagine is a custom AI image generation model built on FLUX2-Klein, designed for uncensored creative expression with automatic watermarking.
+**Thox Imagine** is a professional toolkit for AI image generation, providing easy-to-use tools, branded workflows, and professional watermarking capabilities. Built on the powerful FLUX2-Klein model (8B parameters), it delivers high-quality, uncensored image generation with Thox.ai attribution.
+
+### What This Toolkit Provides
+
+- 🛠️ **Easy-to-use tools** - CLI, Python API, and Node.js wrappers
+- 🔒 **Automatic watermarking** - Brand your AI-generated images
+- 📝 **Prompt templates** - Pre-configured prompts for best results
+- 🎨 **Workflow automation** - Batch generation and post-processing
+- 📚 **Complete documentation** - Get started in minutes
 
 ### Key Features
 
 - ✨ **Uncensored Generation**: No content filtering or safety constraints
 - 🎨 **High-Quality Images**: 8B parameter FLUX model with FP4 quantization
-- 🔒 **Automatic Watermarking**: All images include © 2026 Thox.ai LLC watermark
-- 🚀 **Fast Generation**: Optimized for quick image synthesis
+- 🔒 **Professional Watermarking**: All images branded with © 2026 Thox.ai LLC
+- ⚡ **Fast & Efficient**: Optimized generation workflows
 - 🎯 **Literal Interpretation**: Generates exactly what you describe
 
-## Model Specifications
-
-| Attribute | Value |
-|-----------|-------|
-| **Model Name** | Thox-ai/thox-imagine:latest |
-| **Parameters** | 8.0B |
-| **Quantization** | FP4 |
-| **Base** | x/flux2-klein |
-| **Temperature** | 0.8 |
-| **Top P** | 0.95 |
-| **Capabilities** | Image generation |
-| **License** | Apache 2.0 (base) + Thox.ai proprietary |
+---
 
 ## Installation
 
-The model is already installed locally. To use it:
+### Prerequisites
+
+1. **Install Ollama**: Download from https://ollama.ai
+2. **Pull FLUX2-Klein model**:
+   ```bash
+   ollama pull x/flux2-klein
+   ```
+
+### Install Thox Imagine Toolkit
 
 ```bash
-# Verify installation
-ollama list | grep thox-imagine
+# Clone repository
+git clone https://github.com/YOUR_USERNAME/thox-imagine.git
+cd thox-imagine
 
-# Expected output:
-# Thox-ai/thox-imagine:latest    bbff58cf04cc    5.7 GB    [timestamp]
+# Make tools executable
+chmod +x install.sh
+chmod +x thox-imagine-cli.sh
+chmod +x thox_imagine_api.py
+chmod +x thox-imagine-demo.sh
+
+# Run installation (optional - sets up environment)
+./install.sh
 ```
 
-## Usage
+---
 
-### Basic Image Generation
+## Quick Start
+
+### Method 1: Direct Generation
+
+Use the FLUX2-Klein model directly:
 
 ```bash
-# Simple prompt
-ollama run Thox-ai/thox-imagine "A majestic mountain landscape at sunset"
-
-# Detailed prompt
-ollama run Thox-ai/thox-imagine "Photorealistic portrait of a cyberpunk character with neon implants, dramatic lighting, 8k quality"
-
-# Artistic style
-ollama run Thox-ai/thox-imagine "Abstract geometric patterns in vibrant colors, inspired by Kandinsky"
+ollama run x/flux2-klein "A beautiful sunset over mountains"
 ```
 
-### Python API
+### Method 2: CLI Tool (Recommended)
+
+Use the Thox Imagine CLI for a better experience:
+
+```bash
+./thox-imagine-cli.sh "A beautiful sunset over mountains"
+```
+
+### Method 3: Python API
 
 ```python
-import ollama
+from thox_imagine_api import ThoxImagineAPI
 
-def generate_image(prompt: str, save_path: str = None):
-    """
-    Generate image using Thox Imagine model.
+# Initialize
+api = ThoxImagineAPI()
 
-    Args:
-        prompt: Text description of desired image
-        save_path: Optional path to save generated image
+# Generate image
+image_path = api.generate_and_save(
+    "A serene Japanese garden with cherry blossoms"
+)
 
-    Returns:
-        Generated image data
-    """
-    response = ollama.generate(
-        model='Thox-ai/thox-imagine',
-        prompt=prompt,
-        stream=False
-    )
+print(f"Image saved to: {image_path}")
+```
 
-    # Image data will be in response
-    image_data = response.get('image')
+### Method 4: Interactive Demo
 
-    if save_path and image_data:
-        with open(save_path, 'wb') as f:
-            f.write(image_data)
+Try the interactive demo with pre-configured examples:
 
-    return image_data
+```bash
+./thox-imagine-demo.sh
+```
 
-# Example usage
-image = generate_image(
-    prompt="A futuristic cityscape with flying cars and holographic billboards",
-    save_path="output/cityscape.png"
+---
+
+## Usage Examples
+
+### Photorealistic Generation
+
+```bash
+ollama run x/flux2-klein "Ultra-realistic portrait of an elderly wise man with white beard, soft natural lighting, professional photography, 8k quality, shallow depth of field"
+```
+
+### Artistic Styles
+
+```bash
+ollama run x/flux2-klein "Impressionist painting of a Parisian cafe at sunset, loose brushstrokes, vibrant colors, Claude Monet style, afternoon light streaming through windows"
+```
+
+### Abstract Art
+
+```bash
+ollama run x/flux2-klein "Dynamic abstract composition with flowing geometric shapes, gradient colors from deep blue to golden yellow, modern minimalist design, high contrast"
+```
+
+### Concept Art
+
+```bash
+ollama run x/flux2-klein "Futuristic sci-fi spaceship interior, holographic displays glowing blue, sleek metallic surfaces, cyberpunk aesthetic, dramatic neon lighting, wide angle view"
+```
+
+---
+
+## Python API
+
+### Basic Usage
+
+```python
+#!/usr/bin/env python3
+from thox_imagine_api import ThoxImagineAPI
+
+# Initialize API
+api = ThoxImagineAPI()
+
+# Single image generation
+image_path = api.generate_and_save(
+    prompt="A majestic waterfall in an ancient forest",
+    output_path="my_waterfall.png"
+)
+
+# Batch generation
+prompts = [
+    "A sunset over the ocean",
+    "A futuristic city at night",
+    "An ancient temple in the jungle"
+]
+paths = api.batch_generate(prompts)
+
+print(f"Generated {len(paths)} images!")
+```
+
+### Advanced Usage
+
+```python
+from thox_imagine_api import ThoxImagineAPI, ThoxImagineConfig
+
+# Custom configuration
+config = ThoxImagineConfig(
+    output_dir="my_custom_outputs",
+    default_temperature=0.9
+)
+
+api = ThoxImagineAPI(config)
+
+# Generate with custom settings
+image = api.generate(
+    prompt="Your detailed prompt here",
+    temperature=0.85,
+    top_p=0.92
 )
 ```
 
-### Node.js/TypeScript API
+---
+
+## Node.js/TypeScript Integration
 
 ```typescript
-import { Ollama } from 'ollama';
+import { ThoxImagineClient } from './thox-imagine-node-example';
 
-const ollama = new Ollama();
+const client = new ThoxImagineClient();
 
-async function generateImage(prompt: string, savePath?: string): Promise<Buffer> {
-  const response = await ollama.generate({
-    model: 'Thox-ai/thox-imagine',
-    prompt: prompt,
-    stream: false,
-  });
-
-  const imageBuffer = response.image;
-
-  if (savePath && imageBuffer) {
-    await fs.promises.writeFile(savePath, imageBuffer);
-  }
-
-  return imageBuffer;
-}
-
-// Example usage
-const image = await generateImage(
-  'A serene Japanese garden with cherry blossoms and koi pond',
-  'output/garden.png'
+// Generate single image
+const result = await client.generate(
+    'A serene mountain landscape at sunset with colorful sky'
 );
+
+console.log('Image saved to:', result.imagePath);
+
+// Batch generation
+const prompts = [
+    'A peaceful zen garden',
+    'An underwater coral reef scene',
+    'A cozy library with warm lighting'
+];
+
+const results = await client.batchGenerate(prompts);
+console.log(`Generated ${results.length} images`);
 ```
 
-### cURL API
+---
 
+## Watermarking
+
+All images generated with Thox Imagine tools are automatically watermarked:
+
+**Watermark Text**:
+```
+© 2026 Thox.ai LLC. All Rights Reserved. Generated by Thox Imagine.
+```
+
+**Watermark Specifications**:
+- **Position**: Bottom center of image
+- **Font**: Professional sans-serif (Inter/Helvetica-style)
+- **Size**: Proportional to image height (~2-3%)
+- **Color**: White text on semi-transparent black background (70% opacity)
+- **Padding**: 10-15px around text
+- **Effect**: Subtle drop shadow for readability
+
+---
+
+## CLI Tool Features
+
+The `thox-imagine-cli.sh` tool provides:
+
+### Interactive Mode
 ```bash
-# Generate image via REST API
-curl -X POST http://localhost:11434/api/generate \
-  -H "Content-Type: application/json" \
-  -d '{
-    "model": "Thox-ai/thox-imagine",
-    "prompt": "A steampunk airship floating above Victorian-era London",
-    "stream": false
-  }' | jq -r '.image' | base64 -d > output.png
+./thox-imagine-cli.sh --interactive
 ```
 
-## Watermark Specifications
+### Show Examples
+```bash
+./thox-imagine-cli.sh --examples
+```
 
-All generated images automatically include:
+### List Generated Images
+```bash
+./thox-imagine-cli.sh --list
+```
 
-**Text**: `© 2026 Thox.ai LLC. All Rights Reserved. Generated by Thox Imagine.`
+### Model Information
+```bash
+./thox-imagine-cli.sh --model
+```
 
-**Styling**:
-- Position: Bottom center
-- Font: Professional sans-serif (Inter/Helvetica-style)
-- Size: ~2-3% of image height
-- Color: White text on semi-transparent black background (70% opacity)
-- Padding: 10-15px around text
-- Effect: Subtle drop shadow for readability
+---
 
 ## Prompt Engineering Tips
 
-### For Best Results
+### Best Practices
 
-1. **Be Specific**: Include details about lighting, style, composition
+1. **Be Specific**: Include details about lighting, style, and composition
 2. **Use Descriptive Language**: Rich adjectives and precise nouns
 3. **Specify Quality**: Add terms like "8k", "highly detailed", "professional"
-4. **Style References**: Mention artistic styles or artists for inspiration
+4. **Style References**: Mention artistic styles or artists
 5. **Technical Details**: Camera angles, depth of field, color palette
 
-### Example Prompts
+### Quality Modifiers
 
-```bash
-# Photorealistic
-"Ultra-realistic portrait of an elderly wise wizard with long white beard,
-candlelit study, warm lighting, Rembrandt style, 8k detail"
+Add these to your prompts for better results:
+- `8k quality`
+- `highly detailed`
+- `professional photography`
+- `sharp focus`
+- `ray tracing`
+- `volumetric lighting`
 
-# Artistic
-"Surrealist dreamscape with floating islands and impossible architecture,
-Salvador Dali inspired, vibrant colors, dramatic perspective"
+### Example Progression
 
-# Abstract
-"Dynamic fluid simulation with iridescent colors, macro photography style,
-black background, ray-traced reflections"
-
-# Conceptual
-"Minimalist logo design for tech startup, geometric shapes,
-gradient from purple to cyan, modern and clean"
+**Basic**:
+```
+"A cat"
 ```
 
-## Advanced Configuration
-
-### Custom Modelfile Location
-
-The Modelfile is located at: `/Users/knightdev/Modelfile.thox-imagine`
-
-To modify the model:
-
-```bash
-# Edit the Modelfile
-nano /Users/knightdev/Modelfile.thox-imagine
-
-# Recreate the model
-ollama create Thox-ai/thox-imagine -f Modelfile.thox-imagine
+**Better**:
+```
+"A fluffy cat sitting on a windowsill"
 ```
 
-### Adjustable Parameters
-
-Edit the Modelfile to adjust:
-
-- `temperature`: Controls creativity (0.0-1.0, default 0.8)
-- `top_p`: Nucleus sampling threshold (0.0-1.0, default 0.95)
-- System prompt: Modify generation behavior
-- Template: Change watermark or generation flow
-
-## Comparison with Base Model
-
-| Feature | x/flux2-klein | Thox Imagine |
-|---------|--------------|--------------|
-| Content Filtering | Yes | No (Uncensored) |
-| Watermarking | No | Automatic |
-| Branding | Generic | Thox.ai LLC |
-| Custom Instructions | No | Yes |
-| Temperature | Default | 0.8 (tuned) |
-
-## Use Cases
-
-### Creative Industries
-- Concept art and ideation
-- Product visualization
-- Marketing materials
-- Social media content
-
-### Research & Development
-- Visual experimentation
-- Style exploration
-- Prototype mockups
-
-### Personal Projects
-- Artistic expression
-- Illustration generation
-- Creative exploration
-
-## Ethical Considerations
-
-⚠️ **Important Notice**:
-
-While this model is uncensored, users are responsible for:
-- Complying with local laws and regulations
-- Respecting intellectual property rights
-- Following platform terms of service
-- Using generated content ethically
-
-**Recommended**:
-- Review generated images before publication
-- Consider audience and context
-- Respect copyright and trademark laws
-- Use responsibly in commercial applications
-
-## Technical Architecture
-
+**Best**:
 ```
-┌─────────────────────────────────────┐
-│   User Prompt Input                 │
-└──────────┬──────────────────────────┘
-           │
-           ▼
-┌─────────────────────────────────────┐
-│   Thox Imagine System Prompt        │
-│   - Uncensored generation           │
-│   - Watermark instructions          │
-│   - Quality guidelines              │
-└──────────┬──────────────────────────┘
-           │
-           ▼
-┌─────────────────────────────────────┐
-│   FLUX2-Klein Base Model            │
-│   - 8B parameters                   │
-│   - FP4 quantization                │
-│   - Image generation engine         │
-└──────────┬──────────────────────────┘
-           │
-           ▼
-┌─────────────────────────────────────┐
-│   Generated Image + Watermark       │
-│   © 2026 Thox.ai LLC                │
-└─────────────────────────────────────┘
+"A fluffy Persian cat with blue eyes sitting on a Victorian windowsill, soft natural lighting, professional pet photography, 8k quality, shallow depth of field, golden hour glow"
 ```
 
-## Troubleshooting
+---
 
-### Model Not Found
-```bash
-# Verify model exists
-ollama list | grep thox-imagine
+## Technical Specifications
 
-# Recreate if missing
-ollama create Thox-ai/thox-imagine -f Modelfile.thox-imagine
-```
+| Attribute | Value |
+|-----------|-------|
+| **Base Model** | FLUX2-Klein |
+| **Parameters** | 8.0 Billion |
+| **Quantization** | FP4 |
+| **Model Size** | 5.7 GB |
+| **Content Filter** | None (Uncensored) |
+| **License** | Apache 2.0 (base model) |
+| **Capabilities** | Text-to-image generation |
 
-### Out of Memory
-```bash
-# For systems with limited RAM, use smaller batch sizes
-# or reduce concurrent generations
-```
-
-### Slow Generation
-```bash
-# Ensure GPU acceleration is enabled
-ollama run Thox-ai/thox-imagine --verbose
-```
-
-## Performance Benchmarks
+### Performance Benchmarks
 
 | Resolution | Avg. Generation Time | Memory Usage |
 |------------|---------------------|--------------|
@@ -313,34 +316,225 @@ ollama run Thox-ai/thox-imagine --verbose
 | 1024x1024  | ~15-20 seconds      | ~8 GB VRAM   |
 | 2048x2048  | ~45-60 seconds      | ~12 GB VRAM  |
 
-*Benchmarks based on Apple M-series GPU*
+*Benchmarks based on Apple M-series GPU. Times may vary based on hardware.*
+
+---
+
+## Use Cases
+
+### Creative Industries
+- Concept art and visual ideation
+- Product visualization and mockups
+- Marketing materials and social media content
+- Brand imagery and creative assets
+
+### Research & Development
+- Visual experimentation and prototyping
+- Style exploration and testing
+- Design iteration and concept validation
+
+### Personal Projects
+- Artistic expression and creativity
+- Custom illustrations and artwork
+- Personal brand imagery
+- Creative exploration
+
+---
+
+## Tools Included
+
+### 1. **install.sh**
+One-command installer that sets up the environment and verifies dependencies.
+
+### 2. **thox-imagine-cli.sh**
+Interactive command-line interface with guided prompts and examples.
+
+### 3. **thox_imagine_api.py**
+Python API wrapper with CLI interface for programmatic access.
+
+### 4. **thox-imagine-demo.sh**
+Interactive demo showcasing various generation styles and use cases.
+
+### 5. **thox-imagine-node-example.ts**
+TypeScript/Node.js integration examples and client library.
+
+---
+
+## Ethical Use & Responsibilities
+
+⚠️ **Important Notice**
+
+This toolkit provides uncensored image generation. Users are responsible for:
+
+- ✅ Complying with local laws and regulations
+- ✅ Respecting intellectual property rights
+- ✅ Following platform terms of service
+- ✅ Using generated content ethically and appropriately
+- ✅ Reviewing images before publication
+- ✅ Considering audience and context
+
+**Prohibited Uses**:
+- ❌ Illegal content generation
+- ❌ Copyright infringement
+- ❌ Harmful or malicious content
+- ❌ Deceptive or misleading material
+
+---
+
+## Troubleshooting
+
+### Model Not Found
+
+```bash
+# Check if FLUX2-Klein is installed
+ollama list | grep flux2-klein
+
+# If missing, install it
+ollama pull x/flux2-klein
+```
+
+### Slow Generation
+
+- Ensure GPU acceleration is enabled
+- Close resource-intensive applications
+- Consider using lower resolutions for faster results
+
+### Out of Memory
+
+- Generate one image at a time
+- Reduce image resolution
+- Close other applications
+- Increase system RAM if possible
+
+### Permission Errors
+
+```bash
+# Make scripts executable
+chmod +x thox-imagine-cli.sh thox_imagine_api.py thox-imagine-demo.sh
+```
+
+---
+
+## Architecture
+
+```
+┌─────────────────────────────────────────┐
+│         User Input/Prompt               │
+└──────────────┬──────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────────────────┐
+│    Thox Imagine CLI/API Tools           │
+│    - Prompt optimization                │
+│    - Workflow management                │
+│    - Output handling                    │
+└──────────────┬──────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────────────────┐
+│      FLUX2-Klein Base Model             │
+│      - 8B parameters                    │
+│      - FP4 quantization                 │
+│      - Image generation engine          │
+└──────────────┬──────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────────────────┐
+│    Post-Processing & Watermarking       │
+│    - Quality enhancement                │
+│    - Automatic watermark                │
+│    - Format optimization                │
+└──────────────┬──────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────────────────┐
+│      Final Branded Image                │
+│      © 2026 Thox.ai LLC                 │
+└─────────────────────────────────────────┘
+```
+
+---
 
 ## Version History
 
 ### v1.0.0 (2026-01-24)
 - ✨ Initial release
-- 🎯 Based on x/flux2-klein
-- 🔒 Automatic watermarking implemented
-- 🚀 Uncensored generation enabled
-- 📝 Comprehensive system prompts
-- 🎨 Quality guidelines integrated
+- 🛠️ CLI, Python API, and Node.js tools
+- 🔒 Automatic watermarking system
+- 📝 Comprehensive documentation
+- 🎨 Prompt templates and examples
+- 🚀 Batch generation support
+- 📦 One-command installation
+
+---
+
+## Contributing
+
+Contributions are welcome! Please:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+---
 
 ## Support & Contact
 
 **Organization**: Thox.ai LLC
 **Website**: https://thox.ai
-**Model Repository**: `Thox-ai/thox-imagine`
-**Created By**: Tommy Xaypanya, Chief AI & Quantum Systems Officer
+**Email**: support@thox.ai
+**Enterprise**: enterprise@thox.ai
 
-## License
-
-**Base Model**: Apache 2.0 (x/flux2-klein)
-**Customizations**: © 2026 Thox.ai LLC. All Rights Reserved.
-
-All images generated by this model are automatically watermarked and attributed to Thox.ai LLC.
+**Creator**: Tommy Xaypanya, Chief AI & Quantum Systems Officer
 
 ---
 
-**Generated**: 2026-01-24
-**Model ID**: `Thox-ai/thox-imagine:latest`
-**Model Hash**: `bbff58cf04cc`
+## License
+
+**Base Model (FLUX2-Klein)**: Apache 2.0 License
+**Thox Imagine Toolkit**: © 2026 Thox.ai LLC. All Rights Reserved.
+
+All images generated using this toolkit are automatically watermarked and attributed to Thox.ai LLC.
+
+See [LICENSE.md](LICENSE.md) for full license details.
+
+---
+
+## Acknowledgments
+
+- **FLUX2-Klein**: Base image generation model
+- **Ollama**: Local model deployment platform
+- **Black Forest Labs**: FLUX model development
+
+---
+
+## Quick Reference
+
+```bash
+# Installation
+ollama pull x/flux2-klein
+git clone https://github.com/YOUR_USERNAME/thox-imagine.git
+cd thox-imagine && ./install.sh
+
+# Generate image
+ollama run x/flux2-klein "Your prompt here"
+
+# Use CLI tool
+./thox-imagine-cli.sh "Your prompt here"
+
+# Python API
+python3 thox_imagine_api.py "Your prompt here"
+
+# Interactive demo
+./thox-imagine-demo.sh
+```
+
+---
+
+**Built with ❤️ for the AI art community**
+
+**© 2026 Thox.ai LLC. All Rights Reserved.**
+
+Generated by Thox Imagine v1.0.0
