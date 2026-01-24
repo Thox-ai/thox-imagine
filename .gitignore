@@ -1,0 +1,13 @@
+thox-imagine-outputs/
+*.png
+*.jpg
+*.jpeg
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+node_modules/
+.env
+.venv
+venv/
+*.log
