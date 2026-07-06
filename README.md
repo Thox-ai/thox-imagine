@@ -487,7 +487,11 @@ Contributions are welcome! Please:
 **Email**: support@thox.ai
 **Enterprise**: enterprise@thox.ai
 
-**Creator**: Tommy Xaypanya, Chief AI & Quantum Systems Officer
+**Leadership**:
+- **Tommy Xaypanya** - Chief Technology Officer (CTO)
+- **Craig Ross** - Chief Executive Officer (CEO)
+
+Thox.ai LLC is an independent Texas limited liability company
 
 ---
 
